@@ -7,6 +7,8 @@ services:
     volumes:
       - WordPress:/var/www/html/
     restart: always
+    depends_on:
+      - wordpress
 
   mariadb:
     build: requirements/mariadb
