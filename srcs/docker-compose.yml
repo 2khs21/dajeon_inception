@@ -25,7 +25,6 @@ services:
       - mariadb
     restart: always
 
-
 # networks:
 #
 volumes:
@@ -33,12 +32,12 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ubuntu/wp
+      device: /Users/hyunsoo/dajeon/wp
+
       o: bind
   DB:
     driver: local
     driver_opts:
       type: none
-      device: /home/ubuntu/db
+      device: /Users/hyunsoo/dajeon/db
       o: bind
-
