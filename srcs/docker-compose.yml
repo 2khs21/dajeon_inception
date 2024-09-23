@@ -6,6 +6,7 @@ services:
       - 80:80
     volumes:
       - WordPress:/var/www/html/
+    restart: always
 
   mariadb:
     build: requirements/mariadb
@@ -16,6 +17,7 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    restart: always
 
   wordpress:
     build: requirements/wordpress
