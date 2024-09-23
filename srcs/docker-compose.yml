@@ -1,0 +1,44 @@
+version: "3.7"
+services:
+  nginx:
+    build: requirements/nginx
+    ports:
+      - 80:80
+    volumes:
+      - WordPress:/var/www/html/
+
+  mariadb:
+    build: requirements/mariadb
+    volumes:
+      - DB:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+  wordpress:
+    build: requirements/wordpress
+    volumes:
+      - WordPress:/var/www/html/
+    depends_on:
+      - mariadb
+    restart: always
+
+
+# networks:
+#
+volumes:
+  WordPress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ubuntu/wp
+      o: bind
+  DB:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ubuntu/db
+      o: bind
+
