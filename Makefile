@@ -5,5 +5,6 @@ all:
 
 clean:
 	# docker compose down
-	docker rm -f $$(docker ps -qa)
-	docker rmi -f $$(docker image ls -q)
+	docker rm -f $$(docker ps -qa) || true
+	docker rmi -f $$(docker image ls -q) || true
+	docker volume rm $$(docker volume ls -q) || true
