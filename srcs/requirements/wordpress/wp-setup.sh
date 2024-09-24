@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 echo "Starting WordPress setup..."
 
@@ -41,4 +41,8 @@ fi
 
 echo "WordPress setup completed. Starting PHP-FPM..."
 # PHP-FPM 실행
+
+# PHP-FPM 설정
+sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
+
 exec php-fpm7.4 -F
